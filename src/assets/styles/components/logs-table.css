@@ -1,0 +1,108 @@
+.logs-table-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logs-table-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.logs-table th, .logs-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.logs-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.logs-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.logs-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+.tn{
+    width: 100px;
+}
+.aksi{
+    width: 100px;
+}
+
+.tgl{
+    width: 200px;
+}
+
+.filter-buttons {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.filter-buttons button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.filter-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.filter-buttons button:active {
+    background-color: #003f7f;
+}
+/* Default log row styles */
+.log-row {
+    transition: background-color 0.3s ease;
+}
+
+/* Styles for specific operations */
+.log-row.insert {
+    background-color: #d4edda; /* Light green */
+    color: #22ff00;           /* Dark green */
+}
+
+.log-row.update {
+    background-color: #fff3cd; /* Light yellow */
+    color: #ffbf00;            /* Dark yellow */
+}
+
+.log-row.delete {
+    background-color: #f8d7da; /* Light red */
+    color: #ff0019;            /* Dark red */
+}
+
+/* Hover effect for rows */
+.log-row:hover {
+    background-color: #e2e3e5; /* Light grey for hover */
+}

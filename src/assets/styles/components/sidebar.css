@@ -1,0 +1,136 @@
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100%;
+  background-color: var(--Dark-color);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2); /* Shadow di kanan */
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.burger-button {
+  display: flex;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1100;
+  background-color: var(--body-color);
+  color: #000000;
+}
+
+.close-button {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 26px;
+  cursor: pointer;
+  color: var(--content-color);
+  background-color: var(--Dark-color);
+}
+
+.close--logo{
+  background-color: var(--Dark-color);
+
+}
+
+.sidebar.open .close-button {
+  display: block;
+}
+
+.sidebar--logo {
+  height: 50px;
+  display: flex;
+  padding-left: 10px;
+  justify-content: start;
+  align-items: center;
+  background-color: var(--Dark-color);
+}
+
+.sidebar--logo img{
+  width: 50px;
+  height: 40px;
+  background-color: transparent;
+}
+
+
+.nav--logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: var(--Dark-color);
+  font-style: italic;
+}
+
+.sb {
+  background-color: var(--Dark-color);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 15px;
+  color: #ffffff;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-link{
+  background-color: var(--Dark-color);
+}
+
+.sb .sidebar--icon {
+  background-color: var(--Dark-color);
+  margin-right: 10px;
+}
+
+.sb.active-link {
+  background-color: #21134e;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.sidebar--comp {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding-top: 20px;
+  background-color: var(--Dark-color);
+}
+
+.logout-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-align: center;
+  background-color: var(--button-color);
+}
+
+.logout-btn:hover {
+  background-color: var(--button-hover);
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 75%;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}

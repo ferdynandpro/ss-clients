@@ -1,0 +1,31 @@
+.last--edited{
+    width: 100px;
+}
+
+.number{
+    width: 140px;
+}
+
+.discount-table-header.aksi{
+    width: 600px;
+}
+
+.last--update{
+    width: 150px;
+}
+
+.harga{
+    width: 170px;
+}
+
+/* Add to your CSS file */
+.editable-input.error {
+    border: 1px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  

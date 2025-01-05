@@ -1,0 +1,74 @@
+.discount-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.discount-form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.discount-form-message,
+.discount-form-timestamp {
+  text-align: center;
+  margin: 10px 0;
+  color: #555;
+}
+
+.discount-form-section {
+  margin-bottom: 15px;
+}
+
+.discount-form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.discount-form-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.discount-form-suggestions {
+  list-style-type: none;
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.discount-form-suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.discount-form-suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.discount-form-submit {
+  display: block;
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.discount-form-submit:hover {
+  background-color: #45a049;
+}

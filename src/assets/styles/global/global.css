@@ -1,0 +1,323 @@
+/*google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+
+
+  /*CSS Variables*/
+:root{
+  --header-height : 3rem;
+
+  --hue : 0;
+  --sat : 0%;
+  --title-color : hsl(var(--hue),var(--sat),20%);
+  --title-color-dark: hsl(var(--hue),var(--sat),0%);
+  --text-color: hsl(var(--hue),var(--sat),46%);
+  /* --body-color: hsl(var(--hue),var(--sat),98%); */
+
+  --Dark-color : #001A2F;
+  --body-color : #EAEDF8;
+  --content-color : #fffffd;
+  --form-color : #F4F8FB;
+  --button-color: rgb(13, 169, 235);
+  --button-hover:#216288;
+
+  /*fonts*/
+  --body-font : "poppins",sans-serif;
+  
+  /*font size*/
+    --big-font-size : 3.5rem;
+    --h1-font-size : 2.25rem;
+    --h2-font-size : 1.5rem;
+    --h3-font-size : 1.25rem;
+    --normal-font-size : 1rem;
+    --small-font-size : 0.875rem;
+    --smaller-font-size : 0.813rem;
+    --tiny-font-size : 0.625rem;
+  
+  /*font weight*/
+    --font-normal : 400;
+    --font-medium : 500;
+    --font-semi-bold : 600;
+  
+  /*margin  Bottom*/
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*index*/
+  --z-tooltip : 10;
+  --z-fixed : 100;
+  --z-model : 1000;
+  
+  
+  
+}
+
+/*Responsive things*/
+  @media screen and (max-width : 992px){
+    :root{
+      --big-font-size : 2.75rem;
+      --h1-font-size : 1.5rem;
+      --h2-font-size : 1.75rem;
+      --h3-font-size : 1rem;
+      --normal-font-size : 0.93rem;
+      --small-font-size : 0.82rem;
+      --smaller-font-size : 0.75rem;
+    }
+  }
+
+
+/*>>>>>Base<<<<<*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+
+body {
+  color: var(--text-color);
+}
+
+h1,h2,h3{
+  color : var(--title-color);
+  font-weight : var(--font-semi-bold)
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+
+button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+/*Base */
+
+
+/*>>>>>reuseable css classes<<<<<*/
+.section{
+  padding: 6rem 0 2rem;
+}
+
+.section__title{
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+}
+
+.section__subtitle{
+  display: block;
+  font-size: var(--small-font-size);
+  margin-bottom: 4rem;
+}
+.section__title,
+.section__subtitle{
+  text-align: center;
+
+}
+/*reuseable css classes end*/
+
+
+/*>>>>>layout<<<<<*/
+
+.container--all{
+  margin-top: 80px;
+  margin-bottom: 0;
+}
+
+.container{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.grid{
+  display: grid;
+  gap: 1.5rem;
+}
+/*layout end*/
+
+
+
+
+/*>>>>>button<<<<<*/
+ .button{
+  display: inline-block;
+  background-color: var(--title-color);
+  color: var(--container-color);
+  padding: 1.25rem 2rem;
+  border-radius: 1rem;
+  font-weight: var(--font-medium);
+ }
+
+ .button:hover{
+  background-color: var(--title-color-dark);
+}
+.button__icon{
+  margin-left:var(--mb-0-5)
+}
+
+.button--flex{
+  display: inline-flex;
+}
+/*button end*/
+
+
+.titles{
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+  padding-bottom: 20px;
+  /* background-color: wheat; */
+}
+.title{
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  text-align: center;
+}
+.select--by{
+  background-color: var(--button-color);
+  border: 2px solid var(--third-color);
+  padding: 10px 20px;
+  display: flex;;
+  color: white;
+  padding: 9px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+
+/*>>>>>breakpoint<<<<<*/
+@media screen and (max-width : 922px){
+  .container{
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+  }
+
+  .button{
+    padding: 1rem 1.75rem;
+  }
+
+}
+
+@media screen and (max-width: 768px){
+  .section{
+    padding: 2rem 0 4rem;
+  }
+}
+
+@media screen and (max-width: 576px){
+  
+}
+
+@media screen and (max-width: 350px){
+  :root{
+    --big-font-size : 2.25rem
+  }
+  .container{
+    margin-left: var(--mb-1);
+    margin-right: var(--mb-1);
+  }
+
+}
+@media screen and (max-width: 1200px){
+  .titles{
+    margin-top: 50px;
+  }
+
+}
+
+
+/*breakpoint end*/
+
+
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--Dark-color);
+  padding: 2rem;
+  border: 2px solid var(--third-color);
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content p {
+  margin-bottom: 1rem;
+}
+
+.modal-content button {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--button-color);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.vldt {
+  background-color: var(--second-color);
+  color: white;
+}
+

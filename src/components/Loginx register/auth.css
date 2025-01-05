@@ -1,0 +1,108 @@
+/* Global styles for the page */
+
+
+/* Container for the entire login section */
+.auth--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Login card */
+.auth-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Titles */
+.titles {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.titles + .titles {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #0078ff;
+}
+
+/* Form inputs */
+.input--div {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input--div label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.login--input,
+.pass--input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+.login--input:focus,
+.pass--input:focus {
+  border-color: #0078ff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 120, 255, 0.4);
+}
+
+/* Error message */
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+/* Login button */
+.login--button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0078ff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login--button:hover {
+  background-color: #005fcc;
+}
+
+.login--button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 30px 20px;
+  }
+
+  .titles {
+    font-size: 1.2rem;
+  }
+
+  .login--button {
+    font-size: 0.9rem;
+  }
+}
