@@ -277,17 +277,18 @@ const DiscountList = ({ refreshTrigger }) => {
       {!loading && !error && (
         <table className="data-table">
           <thead>
-            <tr>
-              <th className="discount-table-header number">No.HP</th>
-              <th className="discount-table-header">Nama Pelanggan</th>
-              <th className="discount-table-header">Nama Produk</th>
-              <th className="discount-table-header">MOQ</th> {/* MOQ Column */}
-              <th className="discount-table-header harga">Harga Diskon</th>
-              <th className="discount-table-header last--update">Terakhir Diperbaharui</th>
-              <th className="discount-table-header last--edited">Diedit oleh</th>
-              <th className="discount-table-header aksi">Aksi</th>
-            </tr>
-          </thead>
+  <tr>
+    <th className="discount-table-header number">No.HP</th>
+    <th className="discount-table-header">Nama Pelanggan</th>
+    <th className="discount-table-header">Nama Produk</th>
+    <th className="discount-table-header">MOQ</th>
+    <th className="discount-table-header harga">Harga Diskon</th>
+    <th className="discount-table-header last--update">Terakhir Diperbaharui</th>
+    <th className="discount-table-header last--edited">Diedit oleh</th>
+    <th className="discount-table-header aksi">Aksi</th>
+  </tr>
+</thead>
+
           <tbody>
             {filteredDiscounts.map((discount) => (
               <tr key={discount.id} className="discount-row">

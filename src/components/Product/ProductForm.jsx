@@ -1,48 +1,45 @@
 import React, { useState } from 'react';
-import '../../assets/styles/components/product-add.css'; // Make sure the CSS file is correctly imported
+import api from '../../services/api';  // Import API service
+import '../../assets/styles/components/product-add.css'; // Pastikan file CSS sudah diimport dengan benar
 
 // Helper function to clean and format price input
 const cleanPriceInput = (value) => {
-    return value.replace(/[^0-9]/g, ''); // Only keep numeric characters
+    return value.replace(/[^0-9]/g, ''); // Hanya simpan karakter angka
 };
 
 const formatPrice = (value) => {
-    return `Rp.${parseInt(value, 10).toLocaleString('id-ID')}`; // Format to "Rp.xxx.xxx"
+    return `Rp.${parseInt(value, 10).toLocaleString('id-ID')}`; // Format harga menjadi "Rp.xxx.xxx"
 };
 
 const ProductForm = ({ onAddProduct }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [successMessage, setSuccessMessage] = useState(''); // State for success message
+    const [successMessage, setSuccessMessage] = useState(''); // State untuk pesan sukses
 
     const handlePriceChange = (e) => {
-        const value = cleanPriceInput(e.target.value); // Clean input
-        setPrice(formatPrice(value)); // Format price
+        const value = cleanPriceInput(e.target.value); // Membersihkan input harga
+        setPrice(formatPrice(value)); // Format harga
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const cleanedPrice = cleanPriceInput(price); // Remove "Rp." and separators
+        const cleanedPrice = cleanPriceInput(price); // Hapus "Rp." dan pemisah
         const productData = { name, description, price: parseInt(cleanedPrice, 10) };
 
         try {
-            const response = await fetch('http://localhost:5000/api/products', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(productData),
-            });
+            // Gunakan API service untuk POST request
+            const response = await api.post('/products', productData);
 
-            const result = await response.json();
-            if (response.ok) {
-                onAddProduct(result);
+            if (response.status === 200 || response.status === 201) {
+                onAddProduct(response.data); // Kirim data produk baru ke parent
                 setName('');
                 setDescription('');
                 setPrice('');
-                setSuccessMessage('Product successfully added!'); // Set success message
-                setTimeout(() => setSuccessMessage(''), 3000); // Clear message after 3 seconds
+                setSuccessMessage('Product successfully added!'); // Set pesan sukses
+                setTimeout(() => setSuccessMessage(''), 3000); // Hapus pesan setelah 3 detik
             } else {
-                console.error('Failed to add product', result.message);
+                console.error('Failed to add product', response.data.message);
             }
         } catch (error) {
             console.error('Error adding product:', error);
@@ -88,7 +85,7 @@ const ProductForm = ({ onAddProduct }) => {
                 </div>
             </form>
 
-            {/* Success notification */}
+            {/* Pesan sukses */}
             {successMessage && <div className="message">{successMessage}</div>}
         </div>
     );

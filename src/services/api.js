@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // Your backend URL
+  baseURL: "https://herrywijaya.xyz/sumbersari-be/api", // URL backend Anda
   headers: {
     "Content-Type": "application/json",
   },
 });
+
 
 api.interceptors.request.use(
   (config) => {
