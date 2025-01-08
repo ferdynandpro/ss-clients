@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import '../../assets/styles/components/manage-auth.css';
 import ConfirmationModal from '../../components/Alert/ConfirmationModal'; // Import modal
 import Register from "../Loginx register/Register"; // Import register form
+import '../../assets/styles/components/auth-manage.css'
 
 function AuthManage() {
     const [users, setUsers] = useState([]); // Store users
@@ -57,24 +57,24 @@ function AuthManage() {
 
             {/* Display Users */}
             {users.length > 0 && (
-                <div className="table-container">
+                <div className="table-container ">
                     <h2>Users List</h2>
-                    <table className="data-table">
+                    <table className="data-table ya">
                         <thead>
                             <tr>
-                            <th>ID</th>
+                            <th className="hilang">ID</th>
                             <th>Username</th>
-                            <th>Role</th>
-                            <th>Actions</th>
+                            <th >Role</th>
+                            <th className="hilang">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {users.map((user) => (
                             <tr key={user.id}>
-                                <td>{user.id}</td>
+                                <td className="hilang">{user.id}</td>
                                 <td>{user.username}</td>
                                 <td>{user.role || "No role assigned"}</td> 
-                                <td>
+                                <td className="hilang">
                                 <button
                                     className="action-button delete-button"
                                     onClick={() => setConfirmDelete(user.id)} // Open delete confirmation

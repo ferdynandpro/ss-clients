@@ -81,28 +81,25 @@ pre {
 .filter-buttons button:active {
     background-color: #003f7f;
 }
-/* Default log row styles */
 .log-row {
     transition: background-color 0.3s ease;
 }
 
-/* Styles for specific operations */
 .log-row.insert {
-    background-color: #d4edda; /* Light green */
-    color: #22ff00;           /* Dark green */
+    background-color: #d4edda; 
+    color: #22ff00;         
 }
 
 .log-row.update {
-    background-color: #fff3cd; /* Light yellow */
-    color: #ffbf00;            /* Dark yellow */
+    background-color: #fff3cd;
+    color: #ffbf00;            
 }
 
 .log-row.delete {
-    background-color: #f8d7da; /* Light red */
-    color: #ff0019;            /* Dark red */
+    background-color: #f8d7da; 
+    color: #ff0019;           
 }
 
-/* Hover effect for rows */
 .log-row:hover {
-    background-color: #e2e3e5; /* Light grey for hover */
+    background-color: #e2e3e5; 
 }

@@ -275,116 +275,118 @@ const DiscountList = ({ refreshTrigger }) => {
       {error && <p className="discount-error">{error}</p>}
 
       {!loading && !error && (
-        <table className="data-table">
-          <thead>
-  <tr>
-    <th className="discount-table-header number">No.HP</th>
-    <th className="discount-table-header">Nama Pelanggan</th>
-    <th className="discount-table-header">Nama Produk</th>
-    <th className="discount-table-header">MOQ</th>
-    <th className="discount-table-header harga">Harga Diskon</th>
-    <th className="discount-table-header last--update">Terakhir Diperbaharui</th>
-    <th className="discount-table-header last--edited">Diedit oleh</th>
-    <th className="discount-table-header aksi">Aksi</th>
-  </tr>
-</thead>
-
-          <tbody>
-            {filteredDiscounts.map((discount) => (
-              <tr key={discount.id} className="discount-row">
-                <td className="discount-cell">
-                  {discount.customer?.phone_number || "N/A"}
-                </td>
-                <td className="discount-cell">
-                  {discount.customer?.customer_name || "N/A"}
-                </td>
-                <td className="discount-cell">
-                  {discount.Product?.name || "N/A"}
-                </td>
-                <td className="discount-cell">
-                  {editableMOQ[discount.id] !== undefined ? (
-                    <input
-                      type="text"  // Allow any string input
-                      className={`editable-input ${validationErrors[discount.id] ? "error" : ""}`}
-                      value={editableMOQ[discount.id]}
-                      onChange={(e) => handleMOQChange(discount.id, e.target.value)}
-                    />
-                  ) : (
-                    discount.minimum_order_quantity || "N/A"
-                  )}
-                </td>
-                <td className="discount-cell">
-                  {editableDiscounts[discount.id] !== undefined ? (
-                    <input
-                      type="number"
-                      className={`editable-input ${validationErrors[discount.id] ? "error" : ""}`}
-                      value={editableDiscounts[discount.id]}
-                      onChange={(e) => handlePriceChange(discount.id, e.target.value)}
-                    />
-                  ) : (
-                    formatCurrency(discount.discount_price || 0)
-                  )}
-                  {validationErrors[discount.id] && (
-                    <span className="validation-error">
-                      {validationErrors[discount.id]}
-                    </span>
-                  )}
-                </td>
-                <td className="discount-cell">
-                  {discount.last_updated
-                    ? formatDate(discount.last_updated)
-                    : "N/A"}
-                </td>
-                <td className="discount-cell">
-                  {discount.last_edited_by || "N/A"}
-                </td>
-                <td className="discount-cell discount-actions">
-                  {editableDiscounts[discount.id] !== undefined ||
-                  editableMOQ[discount.id] !== undefined ? (
-                    <>
-                      <button
-                        onClick={() => handleSave(discount.id)}
-                        className="action-button confirm-button"
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => handleCancelEdit(discount.id)}
-                        className="action-button cancel-button"
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => {
-                          setEditableDiscounts((prev) => ({
-                            ...prev,
-                            [discount.id]: discount.discount_price,
-                          }));
-                          setEditableMOQ((prev) => ({
-                            ...prev,
-                            [discount.id]: discount.minimum_order_quantity,
-                          }));
-                        }}
-                        className="action-button edit-button"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(discount.id)}
-                        className="action-button delete-button"
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </td>
+        <div className="table-scroll-container">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th className="discount-table-header number disc-tablee">No.HP</th>
+                <th className="discount-table-header disc-tablee">Nama Pelanggan</th>
+                <th className="discount-table-header disc-tablee">Nama Produk</th>
+                <th className="discount-table-header disc-tablee">MOQ</th>
+                <th className="discount-table-header harga disc-tablee">Harga Diskon</th>
+                <th className="discount-table-header last--update">Terakhir Diperbaharui</th>
+                <th className="discount-table-header last--edited">Diedit oleh</th>
+                <th className="discount-table-header aksi">Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {filteredDiscounts.map((discount) => (
+                <tr key={discount.id} className="discount-row">
+                  <td className="discount-cell disc-tablee">
+                    {discount.customer?.phone_number || "N/A"}
+                  </td>
+                  <td className="discount-cell disc-tablee">
+                    {discount.customer?.customer_name || "N/A"}
+                  </td>
+                  <td className="discount-cell disc-tablee">
+                    {discount.Product?.name || "N/A"}
+                  </td>
+                  <td className="discount-cell disc-tablee">
+                    {editableMOQ[discount.id] !== undefined ? (
+                      <input
+                        type="text"
+                        className={`editable-input ${validationErrors[discount.id] ? "error" : ""}`}
+                        value={editableMOQ[discount.id]}
+                        onChange={(e) => handleMOQChange(discount.id, e.target.value)}
+                      />
+                    ) : (
+                      discount.minimum_order_quantity || "N/A"
+                    )}
+                  </td>
+                  <td className="discount-cell disc-tablee">
+                    {editableDiscounts[discount.id] !== undefined ? (
+                      <input
+                        type="number"
+                        className={`editable-input ${validationErrors[discount.id] ? "error" : ""}`}
+                        value={editableDiscounts[discount.id]}
+                        onChange={(e) => handlePriceChange(discount.id, e.target.value)}
+                      />
+                    ) : (
+                      formatCurrency(discount.discount_price || 0)
+                    )}
+                    {validationErrors[discount.id] && (
+                      <span className="validation-error">
+                        {validationErrors[discount.id]}
+                      </span>
+                    )}
+                  </td>
+                  <td className="discount-cell last--update">
+                    {discount.last_updated
+                      ? formatDate(discount.last_updated)
+                      : "N/A"}
+                  </td>
+                  <td className="discount-cell last--edited">
+                    {discount.last_edited_by || "N/A"}
+                  </td>
+                  <td className="discount-cell discount-actions aksi">
+                    {editableDiscounts[discount.id] !== undefined ||
+                    editableMOQ[discount.id] !== undefined ? (
+                      <>
+                        <button
+                          onClick={() => handleSave(discount.id)}
+                          className="action-button confirm-button"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => handleCancelEdit(discount.id)}
+                          className="action-button cancel-button"
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => {
+                            setEditableDiscounts((prev) => ({
+                              ...prev,
+                              [discount.id]: discount.discount_price,
+                            }));
+                            setEditableMOQ((prev) => ({
+                              ...prev,
+                              [discount.id]: discount.minimum_order_quantity,
+                            }));
+                          }}
+                          className="action-button edit-button"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(discount.id)}
+                          className="action-button delete-button"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       <ConfirmationModal

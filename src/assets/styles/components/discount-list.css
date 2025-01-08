@@ -18,7 +18,6 @@
     width: 170px;
 }
 
-/* Add to your CSS file */
 .editable-input.error {
     border: 1px solid red;
   }
@@ -28,4 +27,50 @@
     font-size: 12px;
     margin-top: 4px;
   }
+  /* Tablet (maksimal lebar 768px) */
+@media screen and (max-width: 1208px) {
+    .last--update,.last--edited, .aksi{
+        display: none;
+    }
+  }
+@media screen and (max-width: 700px) {
+    .disc-tablee{
+        font-size: 10px;
+    }
+    
+    .number{
+        width: 20%;
+    }
+    .harga{
+        width: 20%;
+    }
+  }/* Your existing styles */
+
+.table-scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 700px) {
+    .table-scroll-container {
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .data-table {
+      min-width: 1000px; /* Minimum width to allow scrolling */
+    }
+  }
+  
+  .editable-input.error {
+    border: 1px solid red;
+  }
+  
+  .validation-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  /* Other media queries and styles */
   

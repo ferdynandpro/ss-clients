@@ -1,7 +1,7 @@
-.data--pelanggan-container{
-        width: 100%;
-        max-width: 1200px;  /* Membatasi lebar kontainer agar tidak melebihi batas */
-        margin: 0 auto;  /* Agar kontainer berada di tengah */
-        padding: 20px;
-        box-sizing: border-box;
-      }
+.data--pelanggan-container {
+  width: 100%;
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px;
+  box-sizing: border-box;
+}

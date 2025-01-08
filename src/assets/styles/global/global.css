@@ -1,9 +1,5 @@
-/*google fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
-
-
-  /*CSS Variables*/
 :root{
   --header-height : 3rem;
 
@@ -222,17 +218,22 @@ img{
 /*>>>>>breakpoint<<<<<*/
 @media screen and (max-width : 922px){
   .container{
-    margin-left: var(--mb-1-5);
-    margin-right: var(--mb-1-5);
+    margin-left: 10px;
+    margin-right: 5px;
   }
 
   .button{
     padding: 1rem 1.75rem;
   }
-
+  
 }
 
 @media screen and (max-width: 768px){
+  .titles{
+    font-size: 16px;
+    padding-bottom: 20px;
+    /* background-color: wheat; */
+  }
   .section{
     padding: 2rem 0 4rem;
   }
@@ -245,10 +246,6 @@ img{
 @media screen and (max-width: 350px){
   :root{
     --big-font-size : 2.25rem
-  }
-  .container{
-    margin-left: var(--mb-1);
-    margin-right: var(--mb-1);
   }
 
 }
@@ -321,3 +318,136 @@ img{
   color: white;
 }
 
+/* all table */
+.data-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.data-table th,
+.data-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 200px;
+  overflow-wrap: break-word;
+  height: 100%;
+}
+
+.id {
+  width: 70px;
+}
+
+.data-table th {
+  background-color: var(--button-color);
+  color: white;
+}
+.editable-input {
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.action-button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-button {
+  background-color: var(--button-color);
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: var(--button-hover);
+}
+
+.confirm-button {
+  background-color: #1d6daf;
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: #1a5e8a;
+}
+.cancel-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #c1c1c1;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.action-button:disabled {
+  background-color: #a63232;
+  cursor: not-allowed;
+}
+.disabled-delete {
+  background-color: #f44336;
+  opacity: 0.5;
+}
+
+.action-button:disabled:hover {
+  position: relative;
+}
+
+.action-button:disabled:hover::after {
+  content: "This customer cannot be deleted due to existing discounts.";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0.9;
+  visibility: visible;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+.table-container {
+  overflow-x: auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

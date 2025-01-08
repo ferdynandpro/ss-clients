@@ -1,6 +1,15 @@
-/* Add this CSS in your product-list.css file */
-
 .error-border {
     border: 1px solid red;
   }
-  
+  /* Media query untuk ukuran layar tablet ke bawah (misalnya, max-width: 768px) */
+@media (max-width: 768px) {
+  /* Menyembunyikan kolom ID */
+  .product-id {
+    display: none;
+  }
+
+  /* Menyembunyikan kolom Action */
+  .product-action {
+    display: none;
+  }
+}

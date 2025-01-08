@@ -1,4 +1,3 @@
-/* Container styling */
 .product-form-container {
   max-width: 600px;
   margin: 0 auto;
@@ -8,11 +7,9 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  direction: ltr; /* Ensure left-to-right text alignment */
+  direction: ltr;
   text-align: left;
 }
-
-/* Title styling */
 .product-form-container .title {
   text-align: center;
   font-size: 24px;
@@ -21,21 +18,16 @@
   margin-bottom: 20px;
 }
 
-/* Form structure */
 .product-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
-/* Group styling for inputs */
 .product-form-group {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
-
-/* Form items (each input field and its label) */
 .product-form-item {
   width: 100%;
   flex: 1;
@@ -49,8 +41,6 @@
   margin-bottom: 5px;
   text-align: left;
 }
-
-/* Input and Textarea Styling */
 .product-form-input,
 .product-form-textarea {
   width: 100%;
@@ -60,31 +50,25 @@
   border-radius: 4px;
   box-sizing: border-box;
   text-align: left;
-  direction: ltr; /* Ensure text input is left-to-right */
+  direction: ltr; 
   transition: border-color 0.3s ease-in-out;
 }
-
 .product-form-textarea {
   resize: vertical;
   min-height: 80px;
 }
 
-/* Focus styles for inputs */
 .product-form-input:focus,
 .product-form-textarea:focus {
   outline: none;
   border-color: #4caf50;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
-
-/* Description section */
 .product-form-description {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
-/* Submit button */
 .product-form-button {
   background-color: #4caf50;
   color: white;
@@ -101,15 +85,11 @@
 .product-form-button:hover {
   background-color: #45a049;
 }
-
-/* Error message styling */
 .product-form .error-message {
   color: #f44336;
   font-size: 12px;
   margin-top: 5px;
 }
-
-/* Responsive design for smaller screens */
 @media (max-width: 600px) {
   .product-form-group {
     flex-direction: column;

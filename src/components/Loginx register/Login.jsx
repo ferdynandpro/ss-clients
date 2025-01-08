@@ -27,8 +27,8 @@
     return (
       <div className="auth--container">
         <div className="auth-container">
-          <h2 className="titles">Welcome To</h2>
-          <h2 className="titles">Photocopy Ganda System</h2>
+          {/* <h2 className="titles">Welcome To</h2> */}
+          <h2 className="titles">SUMBER LANCAR</h2>
           <form onSubmit={handleSubmit}>
             <div className="input--div">
               <label>Username:</label>

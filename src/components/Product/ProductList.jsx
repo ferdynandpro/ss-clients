@@ -132,111 +132,112 @@ const ProductList = () => {
         <table className="data-table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Name</th>
+              <th className='product-id'>ID</th>
+              <th >Name</th>
               <th>Description</th>
               <th>Price</th>
-              <th>Action</th>
+              <th className='product-action'>Action</th>
             </tr>
           </thead>
           <tbody>
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => {
-                const hasDiscounts = hasDiscount(product.id); // Check if the product has a discount
-                return (
-                  <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>
-                      {editingProduct?.id === product.id ? (
-                        <input
-                          className={`editable-input ${errors.name ? 'error-border' : ''}`}
-                          type="text"
-                          value={editingProduct.name}
-                          onChange={(e) =>
-                            setEditingProduct((prev) => ({ ...prev, name: e.target.value }))
-                          }
-                        />
-                      ) : (
-                        product.name
-                      )}
-                    </td>
-                    <td>
-                      {editingProduct?.id === product.id ? (
-                        <input
-                          className="editable-input"
-                          type="text"
-                          value={editingProduct.description}
-                          onChange={(e) =>
-                            setEditingProduct((prev) => ({
-                              ...prev,
-                              description: e.target.value,
-                            }))
-                          }
-                        />
-                      ) : (
-                        product.description || 'N/A'
-                      )}
-                    </td>
-                    <td>
-                      {editingProduct?.id === product.id ? (
-                        <input
-                          className={`editable-input ${errors.price ? 'error-border' : ''}`}
-                          type="text"
-                          value={editingProduct.price}
-                          onChange={(e) =>
-                            setEditingProduct((prev) => ({
-                              ...prev,
-                              price: e.target.value,
-                            }))
-                          }
-                        />
-                      ) : (
-                        product.price
-                      )}
-                    </td>
-                    <td>
-                      {editingProduct?.id === product.id ? (
-                        <>
-                          <button
-                            className="action-button confirm-button"
-                            onClick={() => handleUpdateProduct(editingProduct)}
-                          >
-                            Simpan
-                          </button>
-                          <button
-                            className="action-button cancel-button"
-                            onClick={() => setEditingProduct(null)}
-                          >
-                            Batal
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            className="action-button edit-button"
-                            onClick={() => setEditingProduct(product)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => confirmDeleteProduct(product)}
-                            disabled={hasDiscounts} // Disable if product has discounts
-                            className={`action-button delete-button ${hasDiscounts ? 'disabled-delete' : ''}`}
-                          >
-                            Hapus
-                          </button>
-                        </>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })
+  {filteredProducts.length > 0 ? (
+    filteredProducts.map((product) => {
+      const hasDiscounts = hasDiscount(product.id); // Check if the product has a discount
+      return (
+        <tr key={product.id}>
+          <td className="product-id">{product.id}</td> {/* Kolom ID */}
+          <td>
+            {editingProduct?.id === product.id ? (
+              <input
+                className={`editable-input ${errors.name ? 'error-border' : ''}`}
+                type="text"
+                value={editingProduct.name}
+                onChange={(e) =>
+                  setEditingProduct((prev) => ({ ...prev, name: e.target.value }))
+                }
+              />
             ) : (
-              <tr>
-                <td colSpan="5">No products available</td>
-              </tr>
+              product.name
             )}
-          </tbody>
+          </td>
+          <td>
+            {editingProduct?.id === product.id ? (
+              <input
+                className="editable-input"
+                type="text"
+                value={editingProduct.description}
+                onChange={(e) =>
+                  setEditingProduct((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
+              />
+            ) : (
+              product.description || 'N/A'
+            )}
+          </td>
+          <td>
+            {editingProduct?.id === product.id ? (
+              <input
+                className={`editable-input ${errors.price ? 'error-border' : ''}`}
+                type="text"
+                value={editingProduct.price}
+                onChange={(e) =>
+                  setEditingProduct((prev) => ({
+                    ...prev,
+                    price: e.target.value,
+                  }))
+                }
+              />
+            ) : (
+              product.price
+            )}
+          </td>
+          <td className="product-action"> {/* Kolom Action */}
+            {editingProduct?.id === product.id ? (
+              <>
+                <button
+                  className="action-button confirm-button"
+                  onClick={() => handleUpdateProduct(editingProduct)}
+                >
+                  Simpan
+                </button>
+                <button
+                  className="action-button cancel-button"
+                  onClick={() => setEditingProduct(null)}
+                >
+                  Batal
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="action-button edit-button"
+                  onClick={() => setEditingProduct(product)}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => confirmDeleteProduct(product)}
+                  disabled={hasDiscounts} // Disable if product has discounts
+                  className={`action-button delete-button ${hasDiscounts ? 'disabled-delete' : ''}`}
+                >
+                  Hapus
+                </button>
+              </>
+            )}
+          </td>
+        </tr>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="5">No products available</td>
+    </tr>
+  )}
+</tbody>
+
         </table>
         <ConfirmationModal
           isOpen={isModalOpen}

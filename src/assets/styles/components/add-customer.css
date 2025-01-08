@@ -1,88 +1,78 @@
 .add-customer {
-    max-width: 500px;
-    margin: 0px auto;
-    margin-bottom: 40px;
-    padding: 30px;
-    padding-bottom: 40px;
-    background-color: var(--body-color);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 25px;
-    color: #3d86cf;
-    background-color: var(--body-color);
+  max-width: 500px;
+  margin: 0px auto;
+  margin-bottom: 40px;
+  padding: 30px;
+  padding-bottom: 40px;
+  background-color: var(--body-color);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+  color: #3d86cf;
+  background-color: var(--body-color);
+}
+.message {
+  color: #1ed342;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.form--container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--body-color);
+}
+.form--container label {
+  background-color: var(--body-color);
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.form-input {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  background-color: var(--form-color);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+}
+.form-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+.form-submit {
+  background-color: var(--button-color);
+  color: white;
+  padding: 14px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.form-submit:hover {
+  background-color: var(--button-hover);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
   }
 
-  
-  .message {
-    color: #1ed342;
-    font-size: 14px;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-  
-  .form--container {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--body-color);
-  }
-
-  .form--container label{
-    background-color: var(--body-color);
-    color: rgb(0, 0, 0);
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  
   .form-input {
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ced4da;
-    background-color: var(--form-color);
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    transition: all 0.3s;
+    padding: 10px 12px;
+    font-size: 14px;
   }
-  
-  .form-input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-  }
-  
+
   .form-submit {
-    background-color: var(--button-color);
-    color: white;
-    padding: 14px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 12px;
+    font-size: 16px;
   }
-  
-  .form-submit:hover {
-    background-color: var(--button-hover);
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding: 20px;
-    }
-  
-    .form-input {
-      padding: 10px 12px;
-      font-size: 14px;
-    }
-  
-    .form-submit {
-      padding: 12px;
-      font-size: 16px;
-    }
-  }
-  
+}
