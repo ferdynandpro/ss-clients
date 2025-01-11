@@ -2,6 +2,7 @@ import React from 'react'
 import "../../assets/styles/components/dashboard.css"
 import CustomerAnalysis from '../../components/Customer/CustomerAnalysis'
 import Logo from '../../assets/images/sumber-sari.png'
+import LastFiveDiscounts from '../../components/Customer/LastFiveDiscounts'
 const Dashboard = () => {
   return (
     <div className="wewss">
@@ -19,7 +20,9 @@ const Dashboard = () => {
       <div className="container dashboard--content">
       <CustomerAnalysis/>
       </div>
-
+      <div className="container bawah">
+        <LastFiveDiscounts/>
+      </div>
     </div>
   )
 }

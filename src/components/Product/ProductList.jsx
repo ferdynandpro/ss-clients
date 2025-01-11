@@ -22,21 +22,23 @@ const ProductList = () => {
           api.get('/products'),
           api.get('/discounts'),
         ]);
-        setProducts(productsResponse.data);
-        setFilteredProducts(productsResponse.data);
+        const sortedProducts = productsResponse.data
+          .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)); // Sort by updatedAt in descending order
+        setProducts(sortedProducts); // Save all products
+        setFilteredProducts(sortedProducts.slice(0, 50)); // Show only the 50 most recent products
         setDiscounts(discountsResponse.data);
       } catch (error) {
-        console.error('Error fetching data:', error.response?.data || error.message);
+        console.error('Gagal memuat data:', error.response?.data || error.message);
       }
     };
-
+  
     fetchData();
   }, []);
 
   // Handle adding a new product
   const handleAddProduct = (newProduct) => {
-    setProducts((prevProducts) => [...prevProducts, newProduct]);
-    setFilteredProducts((prevProducts) => [...prevProducts, newProduct]);
+    setProducts((prevProducts) => [newProduct, ...prevProducts]);
+    setFilteredProducts((prevProducts) => [newProduct, ...prevProducts]);
   };
 
   // Handle updating a product
@@ -55,20 +57,15 @@ const ProductList = () => {
       const productData = { ...updatedProduct, price: cleanedPrice };
 
       const { data } = await api.put(`/products/${updatedProduct.id}`, productData);
-      setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === updatedProduct.id ? { ...product, ...data } : product
-        )
-      );
-      setFilteredProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product.id === updatedProduct.id ? { ...product, ...data } : product
-        )
-      );
+      const sortedProducts = products.map((product) =>
+        product.id === updatedProduct.id ? { ...product, ...data } : product
+      ).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+      setProducts(sortedProducts);
+      setFilteredProducts(sortedProducts);
       setEditingProduct(null); // Close the editing mode
       setErrors({ name: false, price: false }); // Reset error states
     } catch (error) {
-      console.error('Error updating product:', error.response?.data || error.message);
+      console.error('Gagal Memperbaharui data:', error.response?.data || error.message);
     }
   };
 
@@ -76,16 +73,15 @@ const ProductList = () => {
   const handleDeleteProduct = async () => {
     try {
       await api.delete(`/products/${productToDelete.id}`);
-      setProducts((prevProducts) =>
-        prevProducts.filter((product) => product.id !== productToDelete.id)
-      );
-      setFilteredProducts((prevProducts) =>
-        prevProducts.filter((product) => product.id !== productToDelete.id)
-      );
+      const sortedProducts = products.filter(
+        (product) => product.id !== productToDelete.id
+      ).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+      setProducts(sortedProducts);
+      setFilteredProducts(sortedProducts);
       setProductToDelete(null);
       setIsModalOpen(false); // Close the modal after deletion
     } catch (error) {
-      console.error('Error deleting product:', error.response?.data || error.message);
+      console.error('Gagal menghapus data:', error.response?.data || error.message);
     }
   };
 
@@ -102,12 +98,14 @@ const ProductList = () => {
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-
+  
+    // Search across all products, then limit the results to 50
     const filtered = products.filter((product) =>
       product.name.toLowerCase().includes(query) ||
       (product.description && product.description.toLowerCase().includes(query))
     );
-    setFilteredProducts(filtered);
+  
+    setFilteredProducts(filtered.slice(0, 50)); // Limit to 50 results
   };
 
   const hasDiscount = (productId) =>
@@ -115,14 +113,14 @@ const ProductList = () => {
 
   return (
     <div className="container">
-      <div className="titles">Product List</div>
+      <div className="titles">Data Produk</div>
 
       <ProductForm onAddProduct={handleAddProduct} />
 
       <div className="search-container">
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Cari produk..."
           value={searchQuery}
           onChange={handleSearch}
           className="search-input"
@@ -133,10 +131,10 @@ const ProductList = () => {
           <thead>
             <tr>
               <th className='product-id'>ID</th>
-              <th >Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th className='product-action'>Action</th>
+              <th>Nama</th>
+              <th>Deskripsi</th>
+              <th>Harga Pokok</th>
+              <th className='product-action'>aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -145,7 +143,7 @@ const ProductList = () => {
       const hasDiscounts = hasDiscount(product.id); // Check if the product has a discount
       return (
         <tr key={product.id}>
-          <td className="product-id">{product.id}</td> {/* Kolom ID */}
+          <td className="product-id">{product.id}</td>
           <td>
             {editingProduct?.id === product.id ? (
               <input
@@ -194,7 +192,7 @@ const ProductList = () => {
               product.price
             )}
           </td>
-          <td className="product-action"> {/* Kolom Action */}
+          <td className="product-action">
             {editingProduct?.id === product.id ? (
               <>
                 <button
@@ -220,7 +218,7 @@ const ProductList = () => {
                 </button>
                 <button
                   onClick={() => confirmDeleteProduct(product)}
-                  disabled={hasDiscounts} // Disable if product has discounts
+                  disabled={hasDiscounts}
                   className={`action-button delete-button ${hasDiscounts ? 'disabled-delete' : ''}`}
                 >
                   Hapus
@@ -233,7 +231,7 @@ const ProductList = () => {
     })
   ) : (
     <tr>
-      <td colSpan="5">No products available</td>
+      <td colSpan="5">Tidak Ada Produk Tersedia</td>
     </tr>
   )}
 </tbody>
@@ -241,7 +239,7 @@ const ProductList = () => {
         </table>
         <ConfirmationModal
           isOpen={isModalOpen}
-          message={`Are you sure you want to delete the product "${productToDelete?.name}"?`}
+          message={`Apakah anda ingin menghapus \"${productToDelete?.name}\"?`}
           onConfirm={handleDeleteProduct}
           onCancel={cancelDelete}
         />

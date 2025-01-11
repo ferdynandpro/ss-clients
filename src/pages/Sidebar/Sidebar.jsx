@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { MdOutlineSpaceDashboard, MdOutlinePayment } from "react-icons/md";
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { MdOutlineSpaceDashboard, MdPerson, MdStorefront, MdLocalOffer, MdPeopleOutline, MdHistory, MdExitToApp } from "react-icons/md";
+import { FaBars, FaTimes, FaUserAlt, FaBoxOpen, FaTag, FaUsersCog, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
 import ConfirmationModal from '../../components/Alert/ConfirmationModal'; // Import ConfirmationModal
 import '../../assets/styles/components/sidebar.css';
-import Logo from '../../assets/images/sumber-sari.png'
+import Logo from '../../assets/images/sumber-sari.png';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -47,35 +47,38 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink to="/admin/dashboard/data-pelanggan" className={({ isActive }) => (isActive ? 'sb active-link' : 'sb')}>
-            <MdOutlinePayment className='sidebar--icon' />
+            <MdPerson className='sidebar--icon' />
             <span className='sidebar-link'>Data Pelanggan</span>
           </NavLink>
 
           <NavLink to="/admin/dashboard/product-list" className={({ isActive }) => (isActive ? 'sb active-link' : 'sb')}>
-            <MdOutlinePayment className='sidebar--icon' />
+            <MdStorefront className='sidebar--icon' />
             <span className='sidebar-link'>Data Produk</span>
           </NavLink>
 
           <NavLink to="/admin/dashboard/discount-page" className={({ isActive }) => (isActive ? 'sb active-link' : 'sb')}>
-            <MdOutlinePayment className='sidebar--icon' />
+            <MdLocalOffer className='sidebar--icon' />
             <span className='sidebar-link'>Diskon Pelanggan</span>
           </NavLink>
 
           {/* Show this link only if role is owner */}
           {role === 'owner' && (
             <NavLink to="/admin/dashboard/auth-list" className={({ isActive }) => (isActive ? 'sb active-link' : 'sb')}>
-              <MdOutlinePayment className='sidebar--icon' />
+              <MdPeopleOutline className='sidebar--icon' />
               <span className='sidebar-link'>Data User</span>
             </NavLink>
           )}
 
           <NavLink to="/admin/dashboard/logs" className={({ isActive }) => (isActive ? 'sb active-link' : 'sb')}>
-            <MdOutlinePayment className='sidebar--icon' />
+            <MdHistory className='sidebar--icon' />
             <span className='sidebar-link'>Logs</span>
           </NavLink>
 
           {/* Logout */}
-          <button onClick={() => setShowLogoutConfirmation(true)} className="logout-btn">Logout</button>
+          <button onClick={() => setShowLogoutConfirmation(true)} className="logout-btn">
+            {/* <Fa className='logout-icon' /> */}
+            Logout
+          </button>
         </div>
 
         {/* Close Button */}

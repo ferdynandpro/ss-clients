@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../../services/api"; // Import API service
 import '../../assets/styles/components/add-customer.css'
 
-const AddCustomerForm = ({ onAddCustomer }) => {
+const AddCustomerForm = ({ onAddCustomer, onCustomersUpdate }) => {
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(""); // State for phone number
   const [message, setMessage] = useState("");
@@ -11,13 +11,13 @@ const AddCustomerForm = ({ onAddCustomer }) => {
     e.preventDefault(); // Prevent page reload
 
     if (!customerName || !phoneNumber) {
-      setMessage("Name and phone number are required!");
+      setMessage("Nama dan nomor telepon wajib diisi!");
       return;
     }
 
     const phoneRegex = /^08\d+$/;
     if (!phoneRegex.test(phoneNumber)) {
-      setMessage("Phone number must start with '08' and contain only numbers.");
+      setMessage("Nomor harus dimulai dengan 08");
       return;
     }
 
@@ -27,8 +27,11 @@ const AddCustomerForm = ({ onAddCustomer }) => {
         phone_number: phoneNumber,
       });
 
-      // Pass the new customer to the parent component (DataPelanggan)
-      onAddCustomer(response.data); // Update state with the new customer
+      // Add the new customer locally
+      onAddCustomer(response.data);
+
+      // Refresh customer list from server
+      await onCustomersUpdate();
 
       setMessage(`Pelanggan baru berhasil ditambahkan!`);
 

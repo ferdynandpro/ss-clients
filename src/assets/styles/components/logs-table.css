@@ -60,10 +60,14 @@ pre {
 .filter-buttons {
     margin-bottom: 15px;
     text-align: center;
+    overflow-x: auto; /* Tambahkan scroll horizontal */
+    white-space: nowrap; /* Mencegah tombol terpecah ke baris baru */
+    padding: 10px; /* Tambahkan padding untuk area scroll */
 }
 
 .filter-buttons button {
-    background-color: #007BFF;
+    display: inline-block; /* Pastikan tombol tetap sejajar */
+    background-color: var(--button-color);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -81,6 +85,20 @@ pre {
 .filter-buttons button:active {
     background-color: #003f7f;
 }
+
+/* Media query untuk layar lebih kecil */
+@media (max-width: 500px) {
+    .filter-buttons {
+        text-align: left; /* Ubah ke kiri agar lebih alami dengan scroll */
+        padding: 5px; /* Kurangi padding untuk area kecil */
+    }
+
+    .filter-buttons button {
+        padding: 8px 12px; /* Kurangi ukuran tombol agar lebih pas */
+        font-size: 12px; /* Kurangi ukuran font untuk keterbacaan */
+    }
+}
+
 .log-row {
     transition: background-color 0.3s ease;
 }

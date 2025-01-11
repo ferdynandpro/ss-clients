@@ -26,7 +26,7 @@ const DiscountForm = ({ onSuccess }) => {
         const productsResponse = await api.get("/products");
         setProducts(productsResponse.data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Gagal memuat data:", error);
       }
     };
     fetchData();
@@ -70,7 +70,7 @@ const DiscountForm = ({ onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedCustomer || !selectedProduct || !discountPrice || !minimumOrderQuantity) {
-      setMessage("All fields are required.");
+      setMessage("Semua wajib diisi!");
       return;
     }
 
@@ -83,7 +83,7 @@ const DiscountForm = ({ onSuccess }) => {
       };
 
       const response = await api.post("/discounts", discountData);
-      setMessage(response.data.message || "Discount created successfully!");
+      setMessage(response.data.message || "Data diskon berhasi ditambahkan");
 
       // Reset form fields
       setSelectedCustomer("");
@@ -100,23 +100,23 @@ const DiscountForm = ({ onSuccess }) => {
       }
     } catch (error) {
       console.error("Error creating discount:", error);
-      setMessage("Failed to create discount.");
+      setMessage("gagal membuat data.");
     }
   };
 
   return (
     <div className="add-customer"> {/* Container for the form */}
-      <h2 className="title">Create Discount</h2>
+      <h2 className="title">Tambahkan Diskon</h2>
       {message && <p className="message">{message}</p>}
 
       <div className="form--container">
-        <label className="form--container label">Customer:</label>
+        <label className="form--container label">Nama Pelanggan:</label>
         <input
           type="text"
           className="form-input"
           value={searchCustomer}
           onChange={(e) => setSearchCustomer(e.target.value)}
-          placeholder="Type to search for customer"
+          placeholder="masukkan nama Pelanggan..."
         />
         {filteredCustomers.length > 0 && (
           <ul className="discount-form-suggestions">
@@ -134,13 +134,13 @@ const DiscountForm = ({ onSuccess }) => {
       </div>
 
       <div className="form--container">
-        <label className="form--container label">Product:</label>
+        <label className="form--container label">Produk:</label>
         <input
           type="text"
           className="form-input"
           value={searchProduct}
           onChange={(e) => setSearchProduct(e.target.value)}
-          placeholder="Type to search for product"
+          placeholder="masukkan nama produk..."
         />
         {filteredProducts.length > 0 && (
           <ul className="discount-form-suggestions">
@@ -158,13 +158,13 @@ const DiscountForm = ({ onSuccess }) => {
       </div>
 
       <div className="form--container">
-        <label className="form--container label">Discount Price:</label>
+        <label className="form--container label">Harga Diskon:</label>
         <input
           type="number"
           className="form-input"
           value={discountPrice}
           onChange={(e) => setDiscountPrice(e.target.value)}
-          placeholder="Enter discount price"
+          placeholder="masukkan harga diskon..."
         />
       </div>
 
@@ -175,11 +175,11 @@ const DiscountForm = ({ onSuccess }) => {
           className="form-input"
           value={minimumOrderQuantity}
           onChange={(e) => setMinimumOrderQuantity(e.target.value)}
-          placeholder="Enter minimum order quantity"
+          placeholder="masukkan minimal order quantity..."
         />
       </div>
 
-      <button className="form-submit" onClick={handleSubmit}>
+      <button type="submit" className="form-submit" onClick={handleSubmit}>
         Submit
       </button>
     </div>

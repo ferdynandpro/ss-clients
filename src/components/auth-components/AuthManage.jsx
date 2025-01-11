@@ -46,7 +46,7 @@ function AuthManage() {
         <div className="container auth-manage">
             {/* Register Form */}
             {/* Title */}
-            <p className="titles">User Management</p>
+            <p className="titles">Data User</p>
             <Register />
 
             {/* Loading State */}
@@ -58,14 +58,14 @@ function AuthManage() {
             {/* Display Users */}
             {users.length > 0 && (
                 <div className="table-container ">
-                    <h2>Users List</h2>
+                    {/* <p className="titles">Data User</p> */}
                     <table className="data-table ya">
                         <thead>
                             <tr>
                             <th className="hilang">ID</th>
                             <th>Username</th>
                             <th >Role</th>
-                            <th className="hilang">Actions</th>
+                            <th className="hilang">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,7 +79,7 @@ function AuthManage() {
                                     className="action-button delete-button"
                                     onClick={() => setConfirmDelete(user.id)} // Open delete confirmation
                                 >
-                                    Delete
+                                    Hapus
                                 </button>
                                 </td>
                             </tr>
@@ -95,7 +95,7 @@ function AuthManage() {
             {/* Confirmation Modal */}
             <ConfirmationModal
                 isOpen={confirmDelete !== null} // Modal is open if confirmDelete is set
-                message="Are you sure you want to delete this user?" // Modal message
+                message="Apakah anda yakin ingin menghapus user ini?" // Modal message
                 onConfirm={() => handleDelete(confirmDelete)} // Handle confirm
                 onCancel={() => setConfirmDelete(null)} // Handle cancel
             />

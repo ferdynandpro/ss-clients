@@ -7,3 +7,7 @@
   .table-container .ya{
     width: 100px;
   } */
+
+  .table-container .titles{
+    background-color: var(--body-color);
+  }

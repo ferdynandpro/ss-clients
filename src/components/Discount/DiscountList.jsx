@@ -26,7 +26,7 @@ const DiscountList = ({ refreshTrigger }) => {
         setFilteredDiscounts(sortedDiscounts);
         setLoading(false);
       } catch (err) {
-        setError("Error fetching discounts");
+        setError("Terjadi kesalahan saat mengambil data diskon");
         setLoading(false);
       }
     };
@@ -35,7 +35,7 @@ const DiscountList = ({ refreshTrigger }) => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleString("en-GB", {
+    return date.toLocaleString("id-ID", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -157,7 +157,7 @@ const DiscountList = ({ refreshTrigger }) => {
     if (!updatedPrice && !updatedMOQ) {
       setValidationErrors((prev) => ({
         ...prev,
-        [discountId]: "Price and MOQ cannot be empty",
+        [discountId]: "Harga dan MOQ tidak boleh kosong",
       }));
       return;
     }
@@ -203,7 +203,7 @@ const DiscountList = ({ refreshTrigger }) => {
         return newValidationErrors;
       });
     } catch (err) {
-      setError("Error updating discount");
+      setError("Terjadi kesalahan saat memperbarui diskon");
     }
   };
 
@@ -222,7 +222,7 @@ const DiscountList = ({ refreshTrigger }) => {
       setDiscountToDelete(null);
       setIsModalOpen(false);  // Close the modal after deleting
     } catch (err) {
-      setError("Error deleting discount");
+      setError("Terjadi kesalahan saat menghapus diskon");
     }
   };
 
@@ -252,7 +252,7 @@ const DiscountList = ({ refreshTrigger }) => {
         value={search}
         onChange={handleSearchChange}
         onKeyDown={handleSearchSubmit}
-        placeholder="Search by customer name, phone number, or product name"
+        placeholder="Cari berdasarkan nama pelanggan, nomor telepon, atau nama produk"
         className="search-input"
       />
 
@@ -271,7 +271,7 @@ const DiscountList = ({ refreshTrigger }) => {
         )}
       </div>
 
-      {loading && <p className="discount-loading">Loading...</p>}
+      {loading && <p className="discount-loading">Memuat...</p>}
       {error && <p className="discount-error">{error}</p>}
 
       {!loading && !error && (
@@ -347,13 +347,13 @@ const DiscountList = ({ refreshTrigger }) => {
                           onClick={() => handleSave(discount.id)}
                           className="action-button confirm-button"
                         >
-                          Save
+                          Simpan
                         </button>
                         <button
                           onClick={() => handleCancelEdit(discount.id)}
                           className="action-button cancel-button"
                         >
-                          Cancel
+                          Batal
                         </button>
                       </>
                     ) : (
@@ -377,7 +377,7 @@ const DiscountList = ({ refreshTrigger }) => {
                           onClick={() => handleDelete(discount.id)}
                           className="action-button delete-button"
                         >
-                          Delete
+                          Hapus
                         </button>
                       </>
                     )}
@@ -391,9 +391,9 @@ const DiscountList = ({ refreshTrigger }) => {
 
       <ConfirmationModal
         isOpen={isModalOpen}
-        onClose={cancelDelete}
+        onCancel={cancelDelete}
         onConfirm={confirmDelete}
-        message="Are you sure you want to delete this discount?"
+        message="Apakah Anda yakin ingin menghapus diskon ini?"
       />
     </div>
   );

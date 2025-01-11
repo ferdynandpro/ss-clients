@@ -21,7 +21,7 @@ const Register = () => {
 
     try {
       await registerUser({ username, password, role });
-      setSuccessMessage('Registration successful! Please log in.');
+      setSuccessMessage('Registrasi Berhasil, mengarahkan ke bagian login...');
       setError('');
       setUsername('');
       setPassword('');
@@ -37,13 +37,13 @@ const Register = () => {
 
   return (
     <div className="add-customer">
-      <h2 className="title">Create an Account</h2>
+      <h2 className="title">Buat akun baru</h2>
       <form className="form--container" onSubmit={handleSubmit}>
         <label>Username:</label>
         <input
           className="form-input"
           type="text"
-          placeholder="Enter your username"
+          placeholder="masukkan username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -52,7 +52,7 @@ const Register = () => {
         <input
           className="form-input"
           type="password"
-          placeholder="Enter your password"
+          placeholder="masukkan password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

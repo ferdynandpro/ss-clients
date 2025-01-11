@@ -5,17 +5,18 @@
 .dashboard--container {
   padding: 20px;
   border-radius: 20px;
-  background-color: var(--Dark-color);
+  background-color: var(--content-color);
   margin-bottom: 50px;
 }
+
 .dashboard--container img {
-  background-color: transparent;
+  background-color: var(--content-color);
   width: 100px;
   height: 80px;
 }
 .dashboard--container .titles {
-  color: white;
-  background-color: var(--Dark-color);
+  color: var(--Dark-color);
+  background-color: var(--content-color);
 }
 .date-time-container {
   font-size: 16px;
@@ -30,20 +31,24 @@
   border-radius: 50px;
 }
 .entry {
-  background-color: var(--Dark-color);
+  background-color: var(--content-color);
   display: flex;
   justify-content: start;
   align-items: center;
 }
 .salam {
-  background-color: var(--Dark-color);
-  color: white;
+  background-color: var(--content-color);
+  color:var(--Dark-color);
   font-size: 40px;
   font-weight: bold;
 }
 .dashboard--content {
   display: flex;
   justify-content: space-around;
+}
+
+.bawah{
+  margin-top: 20px;
 }
 
 /* Breakpoint: Max Width 1200px */

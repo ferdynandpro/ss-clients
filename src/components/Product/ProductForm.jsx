@@ -36,23 +36,23 @@ const ProductForm = ({ onAddProduct }) => {
                 setName('');
                 setDescription('');
                 setPrice('');
-                setSuccessMessage('Product successfully added!'); // Set pesan sukses
+                setSuccessMessage('Produk berhasil ditambahkan!'); // Set pesan sukses
                 setTimeout(() => setSuccessMessage(''), 3000); // Hapus pesan setelah 3 detik
             } else {
-                console.error('Failed to add product', response.data.message);
+                console.error('gagal menambahkan data', response.data.message);
             }
         } catch (error) {
-            console.error('Error adding product:', error);
+            console.error('kesalahan dalam menambahkan data:', error);
         }
     };
 
     return (
         <div className="add-customer">
-            <div className="title">Add Product</div>
+            <div className="title">Tambahkan Produk</div>
             <form onSubmit={handleSubmit} className="form--container">
                 <div className="form--container">
                     <div className="form--container item">
-                        <label className="form--container label">Product Name:</label>
+                        <label className="form--container label">Nama Produk:</label>
                         <input
                             type="text"
                             value={name}
@@ -62,7 +62,7 @@ const ProductForm = ({ onAddProduct }) => {
                         />
                     </div>
                     <div className="form--container item">
-                        <label className="form--container label">Price:</label>
+                        <label className="form--container label">Harga Pokok:</label>
                         <input
                             type="text"
                             value={price}
@@ -74,14 +74,14 @@ const ProductForm = ({ onAddProduct }) => {
                 </div>
                 <div className="form--container">
                     <div className="form--container item">
-                        <label className="form--container label">Description:</label>
+                        <label className="form--container label">Deskripsi:</label>
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             className="form-input"
                         />
                     </div>
-                    <button type="submit" className="form-submit">Add Product</button>
+                    <button type="submit" className="form-submit">Tambahkan Produk</button>
                 </div>
             </form>
 

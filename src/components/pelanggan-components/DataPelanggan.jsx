@@ -1,38 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import AddCustomerForm from '../Customer/AddCustomerForm';
 import ManageCustomer from '../Customer/ManageCustomer';
-import api from "../../services/api"; // Ensure api service is imported correctly
+import api from "../../services/api";
 import '../../assets/styles/components/data-pelanggan.css';
 
 const DataPelanggan = () => {
-  const [customers, setCustomers] = useState([]); // State for managing customers
+  const [customers, setCustomers] = useState([]);
 
-  // Fetch customers data from the server when the component mounts
+  // Fetch customers when component mounts
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
         const response = await api.get('/customers');
         setCustomers(response.data);
       } catch (error) {
-        console.error('Error fetching customers:', error);
+        console.error('Terjadi kesalahan saat mengambil data pelanggan.:', error);
       }
     };
 
     fetchCustomers();
-  }, []); // Empty dependency array to run only once when component mounts
+  }, []);
 
-  // Function to add new customer to the list and immediately update the list
   const addCustomer = (newCustomer) => {
-    setCustomers((prevCustomers) => [...prevCustomers, newCustomer]); // Adds new customer to the state
+    setCustomers((prevCustomers) => [...prevCustomers, newCustomer]);
+  };
+
+  const updateCustomers = async () => {
+    try {
+      const response = await api.get('/customers'); // Fetch updated customer list
+      setCustomers(response.data); // Update the state with the latest data
+    } catch (error) {
+      console.error('gagalmemperbaharui data:', error);
+    }
   };
 
   return (
     <div className="container">
       <div className="titles">Data Pelanggan</div>
-      {/* <div className="data--pelanggan-container"> */}
-        <AddCustomerForm onAddCustomer={addCustomer} /> {/* Pass addCustomer function */}
-        <ManageCustomer customers={customers} /> {/* Pass customers list as prop */}
-      {/* </div> */}
+      <AddCustomerForm onAddCustomer={addCustomer} onCustomersUpdate={updateCustomers} />
+      <ManageCustomer customers={customers} onCustomersUpdate={updateCustomers} />
     </div>
   );
 };
