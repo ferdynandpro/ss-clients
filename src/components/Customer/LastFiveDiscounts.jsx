@@ -28,7 +28,7 @@ const LastFiveDiscounts = () => {
 
   return (
     <div className="table-container">
-      <h3>5 Diskon Terakhir</h3>
+      <p className="titles">5 Diskon Terakhir</p>
 
       {loading && <p className="discount-loading">Memuat...</p>}
       {error && <p className="discount-error">{error}</p>}

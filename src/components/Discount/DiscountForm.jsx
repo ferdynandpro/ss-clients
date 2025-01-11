@@ -180,7 +180,7 @@ const DiscountForm = ({ onSuccess }) => {
       </div>
 
       <button type="submit" className="form-submit" onClick={handleSubmit}>
-        Submit
+        Tambahkan Diskon
       </button>
     </div>
   );

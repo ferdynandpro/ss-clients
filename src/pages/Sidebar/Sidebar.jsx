@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { MdOutlineSpaceDashboard, MdPerson, MdStorefront, MdLocalOffer, MdPeopleOutline, MdHistory, MdExitToApp } from "react-icons/md";
-import { FaBars, FaTimes, FaUserAlt, FaBoxOpen, FaTag, FaUsersCog, FaClipboardList, FaSignOutAlt } from 'react-icons/fa';
+import { MdOutlineSpaceDashboard, MdPerson, MdStorefront, MdLocalOffer, MdPeopleOutline, MdHistory } from "react-icons/md";
+import { FaBars, FaTimes } from 'react-icons/fa';
 import ConfirmationModal from '../../components/Alert/ConfirmationModal'; // Import ConfirmationModal
 import '../../assets/styles/components/sidebar.css';
 import Logo from '../../assets/images/sumber-sari.png';
