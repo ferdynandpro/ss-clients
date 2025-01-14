@@ -10,7 +10,6 @@ const DiscountForm = ({ onSuccess }) => {
 
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
-  const [customerPhone, setCustomerPhone] = useState("");
   const [discountPrice, setDiscountPrice] = useState("");
   const [minimumOrderQuantity, setMinimumOrderQuantity] = useState(""); // Ensure it's a string
   const [message, setMessage] = useState("");
@@ -56,7 +55,6 @@ const DiscountForm = ({ onSuccess }) => {
 
   const handleSelectCustomer = (customer) => {
     setSelectedCustomer(customer.customer_name);
-    setCustomerPhone(customer.phone_number);
     setSearchCustomer(customer.customer_name);
     setFilteredCustomers([]);
   };
@@ -88,7 +86,6 @@ const DiscountForm = ({ onSuccess }) => {
       // Reset form fields
       setSelectedCustomer("");
       setSelectedProduct("");
-      setCustomerPhone("");
       setDiscountPrice("");
       setMinimumOrderQuantity(""); // Reset minimumOrderQuantity
       setSearchCustomer("");

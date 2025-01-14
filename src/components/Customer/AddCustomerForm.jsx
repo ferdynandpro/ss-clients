@@ -52,6 +52,7 @@ const AddCustomerForm = ({ onAddCustomer, onCustomersUpdate }) => {
         <input
           type="text"
           id="customerName"
+          name="customerName"  // Added name attribute
           value={customerName}
           onChange={(e) => setCustomerName(e.target.value)}
           className="form-input"
@@ -62,6 +63,7 @@ const AddCustomerForm = ({ onAddCustomer, onCustomersUpdate }) => {
         <input
           type="text"
           id="phoneNumber"
+          name="phoneNumber"  // Added name attribute
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
           className="form-input"
