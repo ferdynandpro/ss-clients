@@ -57,23 +57,32 @@ const DiscountList = ({ refreshTrigger }) => {
     const value = e.target.value;
     setSearch(value);
     setExactSearch(false);
-
+  
     if (value) {
-      const filtered = discounts.filter(
-        (discount) =>
-          discount.customer?.customer_name
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          discount.customer?.phone_number
-            .toLowerCase()
-            .includes(value.toLowerCase()) ||
-          discount.Product?.name.toLowerCase().includes(value.toLowerCase())
-      );
+      const uniqueSuggestions = {};
+      const filtered = discounts.filter((discount) => {
+        const customerName = discount.customer?.customer_name?.toLowerCase();
+        const phoneNumber = discount.customer?.phone_number?.toLowerCase();
+        const productName = discount.Product?.name?.toLowerCase();
+        
+        if (
+          (customerName && customerName.includes(value.toLowerCase()) && !uniqueSuggestions[customerName]) ||
+          (phoneNumber && phoneNumber.includes(value.toLowerCase()) && !uniqueSuggestions[phoneNumber]) ||
+          (productName && productName.includes(value.toLowerCase()) && !uniqueSuggestions[productName])
+        ) {
+          uniqueSuggestions[customerName] = true;
+          uniqueSuggestions[phoneNumber] = true;
+          uniqueSuggestions[productName] = true;
+          return true;
+        }
+        return false;
+      });
       setSuggestions(filtered);
     } else {
       setSuggestions([]);
     }
   };
+  
 
   const handleSearchSubmit = (e) => {
     if (e.key === "Enter") {
@@ -271,8 +280,8 @@ const DiscountList = ({ refreshTrigger }) => {
         )}
       </div>
 
-      {loading && <p className="discount-loading">Memuat...</p>}
       {error && <p className="discount-error">{error}</p>}
+      {loading && <p className="discount-loading">Memuat...</p>}
 
       {!loading && !error && (
         <div className="table-scroll-container">

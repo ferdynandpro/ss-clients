@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../../services/api";
-import "../../assets/styles/components/discount-form.css"; // Make sure the CSS file is imported
+import "../../assets/styles/components/discount-form.css";
 
 const DiscountForm = ({ onSuccess }) => {
   const [customers, setCustomers] = useState([]);
@@ -11,7 +11,7 @@ const DiscountForm = ({ onSuccess }) => {
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
   const [discountPrice, setDiscountPrice] = useState("");
-  const [minimumOrderQuantity, setMinimumOrderQuantity] = useState(""); // Ensure it's a string
+  const [minimumOrderQuantity, setMinimumOrderQuantity] = useState("");
   const [message, setMessage] = useState("");
   const [searchCustomer, setSearchCustomer] = useState("");
   const [searchProduct, setSearchProduct] = useState("");
@@ -33,10 +33,11 @@ const DiscountForm = ({ onSuccess }) => {
 
   useEffect(() => {
     if (searchCustomer) {
-      const filtered = customers.filter((customer) =>
-        customer.customer_name.toLowerCase().includes(searchCustomer.toLowerCase())
+      setFilteredCustomers(
+        customers.filter((customer) =>
+          customer.customer_name.toLowerCase().includes(searchCustomer.toLowerCase())
+        )
       );
-      setFilteredCustomers(filtered);
     } else {
       setFilteredCustomers([]);
     }
@@ -44,10 +45,11 @@ const DiscountForm = ({ onSuccess }) => {
 
   useEffect(() => {
     if (searchProduct) {
-      const filtered = products.filter((product) =>
-        product.name.toLowerCase().includes(searchProduct.toLowerCase())
+      setFilteredProducts(
+        products.filter((product) =>
+          product.name.toLowerCase().includes(searchProduct.toLowerCase())
+        )
       );
-      setFilteredProducts(filtered);
     } else {
       setFilteredProducts([]);
     }
@@ -65,6 +67,13 @@ const DiscountForm = ({ onSuccess }) => {
     setFilteredProducts([]);
   };
 
+  const handleBlur = () => {
+    setTimeout(() => {
+      setFilteredCustomers([]);
+      setFilteredProducts([]);
+    }, 200);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedCustomer || !selectedProduct || !discountPrice || !minimumOrderQuantity) {
@@ -77,32 +86,30 @@ const DiscountForm = ({ onSuccess }) => {
         customer_name: selectedCustomer,
         product_name: selectedProduct,
         discount_price: parseFloat(discountPrice),
-        minimum_order_quantity: minimumOrderQuantity, // Keep it as a string
+        minimum_order_quantity: minimumOrderQuantity,
       };
 
       const response = await api.post("/discounts", discountData);
-      setMessage(response.data.message || "Data diskon berhasi ditambahkan");
+      setMessage(response.data.message || "Data diskon berhasil ditambahkan");
 
-      // Reset form fields
       setSelectedCustomer("");
       setSelectedProduct("");
       setDiscountPrice("");
-      setMinimumOrderQuantity(""); // Reset minimumOrderQuantity
+      setMinimumOrderQuantity("");
       setSearchCustomer("");
       setSearchProduct("");
 
-      // Notify parent to refresh data
       if (onSuccess) {
         onSuccess();
       }
     } catch (error) {
       console.error("Error creating discount:", error);
-      setMessage("gagal membuat data.");
+      setMessage("Gagal membuat data.");
     }
   };
 
   return (
-    <div className="add-customer"> {/* Container for the form */}
+    <div className="add-customer">
       <h2 className="title">Tambahkan Diskon</h2>
       {message && <p className="message">{message}</p>}
 
@@ -113,7 +120,8 @@ const DiscountForm = ({ onSuccess }) => {
           className="form-input"
           value={searchCustomer}
           onChange={(e) => setSearchCustomer(e.target.value)}
-          placeholder="masukkan nama Pelanggan..."
+          onBlur={handleBlur}
+          placeholder="Masukkan nama pelanggan..."
         />
         {filteredCustomers.length > 0 && (
           <ul className="discount-form-suggestions">
@@ -121,7 +129,7 @@ const DiscountForm = ({ onSuccess }) => {
               <li
                 key={customer.id}
                 className="discount-form-suggestion-item"
-                onClick={() => handleSelectCustomer(customer)}
+                onMouseDown={() => handleSelectCustomer(customer)}
               >
                 {customer.customer_name} - {customer.phone_number}
               </li>
@@ -137,7 +145,8 @@ const DiscountForm = ({ onSuccess }) => {
           className="form-input"
           value={searchProduct}
           onChange={(e) => setSearchProduct(e.target.value)}
-          placeholder="masukkan nama produk..."
+          onBlur={handleBlur}
+          placeholder="Masukkan nama produk..."
         />
         {filteredProducts.length > 0 && (
           <ul className="discount-form-suggestions">
@@ -145,7 +154,7 @@ const DiscountForm = ({ onSuccess }) => {
               <li
                 key={product.id}
                 className="discount-form-suggestion-item"
-                onClick={() => handleSelectProduct(product.name)}
+                onMouseDown={() => handleSelectProduct(product.name)}
               >
                 {product.name}
               </li>
@@ -161,18 +170,18 @@ const DiscountForm = ({ onSuccess }) => {
           className="form-input"
           value={discountPrice}
           onChange={(e) => setDiscountPrice(e.target.value)}
-          placeholder="masukkan harga diskon..."
+          placeholder="Masukkan harga diskon..."
         />
       </div>
 
       <div className="form--container">
         <label className="form--container label">Minimum Order Quantity:</label>
         <input
-          type="text" // Ensure it's a string input field
+          type="text"
           className="form-input"
           value={minimumOrderQuantity}
           onChange={(e) => setMinimumOrderQuantity(e.target.value)}
-          placeholder="masukkan minimal order quantity..."
+          placeholder="Masukkan minimal order quantity..."
         />
       </div>
 
