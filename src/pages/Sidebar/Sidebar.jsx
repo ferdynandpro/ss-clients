@@ -37,7 +37,7 @@ const Sidebar = () => {
       <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="sidebar--logo">
           <img src={Logo} alt="sumber-sari-logo" />
-          <a href="/admin/dashboard/dashboard" className="nav--logo">SUMBER LANCAR</a>
+          <a href="/admin/dashboard/dashboard" className="nav--logo">SUMBER SARI</a>
         </div>
 
         <div className="sidebar--comp">

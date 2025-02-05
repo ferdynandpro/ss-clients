@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="titles">Menu Utama</div>
       <div className="entry">
       <img src={Logo} alt="" />
-      <p className="salam">SELAMAT DATANG DI MENU UTAMA SUMBER LANCAR</p>
+      <p className="salam">SELAMAT DATANG DI MENU UTAMA SUMBER SARI</p>
       </div>
 
 
