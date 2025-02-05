@@ -98,7 +98,8 @@ const ProductList = () => {
     setSearchQuery(query);
     const filtered = products.filter((product) =>
       product.name.toLowerCase().includes(query) ||
-      (product.description && product.description.toLowerCase().includes(query))
+      (product.description && product.description.toLowerCase().includes(query))||
+      (product.barcode && product.barcode.toLowerCase().includes(query))
     );
     setFilteredProducts(filtered.slice(0, 50));
   };
@@ -125,9 +126,10 @@ const ProductList = () => {
           <table className="data-table">
             <thead>
               <tr>
-                <th className="product-id">ID</th>
+                {/* <th className="product-id">ID</th> */}
                 <th>Nama</th>
                 <th>Deskripsi</th>
+                <th>Barcode</th>
                 <th>Harga Pokok</th>
                 <th className="product-action">Aksi</th>
               </tr>
@@ -138,7 +140,7 @@ const ProductList = () => {
                   const hasDiscounts = hasDiscount(product.id);
                   return (
                     <tr key={product.id}>
-                      <td className="product-id">{product.id}</td>
+                      {/* <td className="product-id">{product.id}</td> */}
                       <td>
                         {editingProduct?.id === product.id ? (
                           <input
@@ -168,6 +170,23 @@ const ProductList = () => {
                           />
                         ) : (
                           product.description || 'N/A'
+                        )}
+                      </td>
+                      <td>
+                        {editingProduct?.id === product.id ? (
+                          <input
+                            className="editable-input"
+                            type="text"
+                            value={editingProduct.barcode}
+                            onChange={(e) =>
+                              setEditingProduct((prev) => ({
+                                ...prev,
+                                barcode: e.target.value,
+                              }))
+                            }
+                          />
+                        ) : (
+                          product.barcode || 'N/A'
                         )}
                       </td>
                       <td>

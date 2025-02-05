@@ -52,97 +52,92 @@ const DiscountList = ({ refreshTrigger }) => {
       maximumFractionDigits: 0, // No decimals
     }).format(amount);
   };
-
   const handleSearchChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.trim().toLowerCase();
     setSearch(value);
     setExactSearch(false);
   
     if (value) {
-      const uniqueSuggestions = {};
       const filtered = discounts.filter((discount) => {
         const customerName = discount.customer?.customer_name?.toLowerCase();
         const phoneNumber = discount.customer?.phone_number?.toLowerCase();
         const productName = discount.Product?.name?.toLowerCase();
-        
-        if (
-          (customerName && customerName.includes(value.toLowerCase()) && !uniqueSuggestions[customerName]) ||
-          (phoneNumber && phoneNumber.includes(value.toLowerCase()) && !uniqueSuggestions[phoneNumber]) ||
-          (productName && productName.includes(value.toLowerCase()) && !uniqueSuggestions[productName])
-        ) {
-          uniqueSuggestions[customerName] = true;
-          uniqueSuggestions[phoneNumber] = true;
-          uniqueSuggestions[productName] = true;
-          return true;
-        }
-        return false;
+        const barcode = discount.Product?.barcode?.toLowerCase(); // Pastikan barcode ada di sini
+  
+        return (
+          (customerName && customerName.includes(value)) ||
+          (phoneNumber && phoneNumber.includes(value)) ||
+          (productName && productName.includes(value)) ||
+          (barcode && barcode.includes(value)) // Sekarang barcode bisa dicari!
+        );
       });
-      setSuggestions(filtered);
+  
+      setFilteredDiscounts(filtered);
     } else {
-      setSuggestions([]);
+      setFilteredDiscounts(discounts); // Jika input kosong, tampilkan semua data
     }
   };
   
-
+  
   const handleSearchSubmit = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       setExactSearch(true);
-
-      const searchParts = search.split(",").map((part) => part.trim().toLowerCase());
+  
+      const searchLower = search.trim().toLowerCase();
+  
       const exactMatches = discounts.filter((discount) => {
-        const customerMatch =
-          searchParts[0] &&
-          discount.customer?.customer_name.toLowerCase() === searchParts[0];
-
-        const phoneMatch =
-          searchParts[1] &&
-          discount.customer?.phone_number.toLowerCase() === searchParts[1];
-
-        const productMatch =
-          searchParts[2] &&
-          discount.Product?.name.toLowerCase() === searchParts[2];
-
-        return (
-          (searchParts.length === 1 && (customerMatch || phoneMatch || productMatch)) ||
-          (searchParts.length > 1 && customerMatch && phoneMatch && productMatch)
-        );
+        const customerMatch = discount.customer?.customer_name?.toLowerCase() === searchLower;
+        const phoneMatch = discount.customer?.phone_number?.toLowerCase() === searchLower;
+        const productMatch = discount.Product?.name?.toLowerCase() === searchLower;
+        const barcodeMatch = discount.Product?.barcode?.toLowerCase() === searchLower; // Pencocokan barcode
+  
+        return customerMatch || phoneMatch || productMatch || barcodeMatch;
       });
-
+  
       setFilteredDiscounts(exactMatches);
       setSuggestions([]);
     }
   };
-
+  
+  
+  
   const handleSuggestionClick = (suggestion) => {
-    const name = suggestion.customer?.customer_name || suggestion.Product?.name;
-    setSearch(name);
+    const searchValue = suggestion.customer?.customer_name || suggestion.Product?.name || suggestion.Product?.barcode;
+    setSearch(searchValue);
     setSuggestions([]);
     setExactSearch(true);
-
+  
     const exactMatches = discounts.filter(
       (discount) =>
-        discount.customer?.customer_name.toLowerCase() === name.toLowerCase() ||
-        discount.Product?.name.toLowerCase() === name.toLowerCase()
+        discount.customer?.customer_name?.toLowerCase() === searchValue.toLowerCase() ||
+        discount.customer?.phone_number?.toLowerCase() === searchValue.toLowerCase() ||
+        discount.Product?.name?.toLowerCase() === searchValue.toLowerCase() ||
+        discount.Product?.barcode?.toLowerCase() === searchValue.toLowerCase() // Tambahkan barcode
     );
+  
     setFilteredDiscounts(exactMatches);
   };
+  
+  
 
   useEffect(() => {
-    if (!exactSearch) {
-      const partialMatches = discounts.filter(
-        (discount) =>
-          discount.customer?.customer_name
-            .toLowerCase()
-            .includes(search.toLowerCase()) ||
-          discount.customer?.phone_number
-            .toLowerCase()
-            .includes(search.toLowerCase()) ||
-          discount.Product?.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setFilteredDiscounts(partialMatches);
-    }
-  }, [search, discounts, exactSearch]);
+    const fetchDiscounts = async () => {
+      try {
+        const response = await api.get("/discounts");
+        const sortedDiscounts = response.data.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
+        setDiscounts(sortedDiscounts);
+        setFilteredDiscounts(sortedDiscounts);
+        console.log("Discount Data:", sortedDiscounts); // Tambahkan ini untuk debugging
+        setLoading(false);
+      } catch (err) {
+        setError("Terjadi kesalahan saat mengambil data diskon");
+        setLoading(false);
+      }
+    };
+    fetchDiscounts();
+  }, [refreshTrigger]);
+  
 
   const handlePriceChange = (discountId, newPrice) => {
     const formattedPrice = newPrice.replace(/[^\d]/g, ""); // Remove any non-numeric characters
@@ -291,6 +286,7 @@ const DiscountList = ({ refreshTrigger }) => {
                 <th className="discount-table-header number disc-tablee">No.HP</th>
                 <th className="discount-table-header disc-tablee">Nama Pelanggan</th>
                 <th className="discount-table-header disc-tablee">Nama Produk</th>
+                <th className="discount-table-header disc-tablee">barcode</th>
                 <th className="discount-table-header disc-tablee">MOQ</th>
                 <th className="discount-table-header harga disc-tablee">Harga Diskon</th>
                 <th className="discount-table-header last--update">Terakhir Diperbaharui</th>
@@ -310,6 +306,9 @@ const DiscountList = ({ refreshTrigger }) => {
                   </td>
                   <td className="discount-cell disc-tablee">
                     {discount.Product?.name || "N/A"}
+                  </td>
+                  <td className="discount-cell disc-tablee">
+                    {discount.Product?.barcode || "N/A"}
                   </td>
                   <td className="discount-cell disc-tablee">
                     {editableMOQ[discount.id] !== undefined ? (

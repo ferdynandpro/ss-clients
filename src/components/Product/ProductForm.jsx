@@ -14,6 +14,7 @@ const formatPrice = (value) => {
 const ProductForm = ({ onAddProduct }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [barcode, setBarcode] = useState('');
     const [price, setPrice] = useState('');
     const [successMessage, setSuccessMessage] = useState(''); // State untuk pesan sukses
 
@@ -25,7 +26,7 @@ const ProductForm = ({ onAddProduct }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const cleanedPrice = cleanPriceInput(price); // Hapus "Rp." dan pemisah
-        const productData = { name, description, price: parseInt(cleanedPrice, 10) };
+        const productData = { name, description, barcode, price: parseInt(cleanedPrice, 10) };
 
         try {
             // Gunakan API service untuk POST request
@@ -36,6 +37,7 @@ const ProductForm = ({ onAddProduct }) => {
                 setName('');
                 setDescription('');
                 setPrice('');
+                setBarcode('');
                 setSuccessMessage('Produk berhasil ditambahkan!'); // Set pesan sukses
                 setTimeout(() => setSuccessMessage(''), 3000); // Hapus pesan setelah 3 detik
             } else {
@@ -57,6 +59,16 @@ const ProductForm = ({ onAddProduct }) => {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            className="form-input"
+                            required
+                        />
+                    </div>
+                    <div className="form--container item">
+                        <label className="form--container label">Barcode:</label>
+                        <input
+                            type="text"
+                            value={barcode}
+                            onChange={(e) => setBarcode(e.target.value)}
                             className="form-input"
                             required
                         />

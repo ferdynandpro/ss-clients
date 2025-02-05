@@ -24,7 +24,13 @@ const PrivateRoute = ({ element }) => {
 
 function App() {
   return (
-    <Router>
+    <Router
+    basename="/sumbersari"
+    future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}
+    >
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
